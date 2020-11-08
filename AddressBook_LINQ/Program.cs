@@ -13,6 +13,7 @@ namespace AddressBook_LINQ
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to address book manager!");
+            AddressBookDataTable.AddDataIntoTable();
         }
     }
 }
