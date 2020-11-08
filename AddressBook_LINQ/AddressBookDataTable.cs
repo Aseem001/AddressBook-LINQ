@@ -46,6 +46,7 @@ namespace AddressBook_LINQ
             addressBookTable.Rows.Add("Saurabh", "Ganguly", "Eden Gardens", "Kolkata", "West Bengal", 987654, 3456787654, "sg@gmail.com");
             addressBookTable.Rows.Add("Virendra", "Sehwag", "Firoz Shah Kotla", "New Delhi", "New Delhi", 234566, 6543456789, "vs@gmail.com");
             addressBookTable.Rows.Add("AB", "DeVilliers", "Chinnaswamy", "Bengaluru", "Karnataka", 444556, 3456787654, "abd@gmail.com");
+            addressBookTable.Rows.Add("Yuzvendra", "Chahal", "Chinnaswamy", "Bengaluru", "Karnataka", 444556, 3456787654, "yc@gmail.com");
         }
 
         /// <summary>
@@ -101,6 +102,36 @@ namespace AddressBook_LINQ
             {
                 Console.WriteLine($"FirstName:{v.Field<string>("FirstName")}\nLastName:{v.Field<string>("LastName")}\nAddress:{v.Field<string>("Address")}\nCity:{v.Field<string>("City")}\nState:{v.Field<string>("State")}\nZip:{v.Field<int>("Zip")}\nPhoneNumber:{v.Field<double>("PhoneNumber")}\nEmail:{v.Field<string>("Email")}\n");
             }
+        }
+
+        /// <summary>
+        /// UC 7 : Gets the state/city and number of people in that city/state.
+        /// </summary>
+        public static void GetCountOfContactInCityOrState()
+        {
+            Console.WriteLine("Enter:\n1.For city\n2.For state");
+            int option = Convert.ToInt32(Console.ReadLine());         
+            switch (option)
+            {
+                case 1:
+                    var retrievedCityData = (from p in addressBookTable.AsEnumerable()
+                                         group p by p.Field<string>("City") into g
+                                         select new { City = g.Key, Count = g.Count() });
+                    foreach (var v in retrievedCityData)
+                    {
+                        Console.WriteLine($"City:{v.City},Count:{v.Count}");
+                    }
+                    break;
+                case 2:
+                    var retrievedStateData = (from p in addressBookTable.AsEnumerable()
+                                         group p by p.Field<string>("State") into g
+                                         select new { State = g.Key, Count = g.Count() });
+                    foreach (var v in retrievedStateData)
+                    {
+                        Console.WriteLine($"State:{v.State},Count:{v.Count}");
+                    }
+                    break;
+            }            
         }
     }
 }
