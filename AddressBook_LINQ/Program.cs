@@ -15,13 +15,15 @@ namespace AddressBook_LINQ
             Console.WriteLine("Welcome to address book manager!");
             //UC 1,2,3
             AddressBookDataTable.AddDataIntoTable();
-            AddressBookDataTable.DisplayTableContents();
+            //AddressBookDataTable.DisplayTableContents();
             //UC 4
-            AddressBookDataTable.EditExistingContact("Virendra", "Sehwag", 136119);
-            AddressBookDataTable.DisplayTableContents();
+            //AddressBookDataTable.EditExistingContact("Virendra", "Sehwag", 136119);
+            //AddressBookDataTable.DisplayTableContents();
             //UC 5
-            AddressBookDataTable.DeleteContact("Virendra", "Sehwag");
-            AddressBookDataTable.DisplayTableContents();
+            //AddressBookDataTable.DeleteContact("Virendra", "Sehwag");
+            //AddressBookDataTable.DisplayTableContents();
+            //UC 6
+            AddressBookDataTable.RetrievePersonFromACityOrState("Mumbai", "Karnataka");
         }
     }
 }
