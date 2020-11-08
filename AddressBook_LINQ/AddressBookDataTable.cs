@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Bridgelabz">
+// <copyright file="AddressBookDataTable.cs" company="Bridgelabz">
 //   Copyright © 2018 Company
 // </copyright>
 // <creator Name="Aseem Anand"/>
@@ -7,12 +7,15 @@
 namespace AddressBook_LINQ
 {
     using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
 
-    class Program
+    public class AddressBookDataTable
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Welcome to address book manager!");
-        }
+        /// <summary>
+        /// UC 1 : Created new address book table
+        /// </summary>
+        public static DataTable addressBookTable = new DataTable();
     }
 }
