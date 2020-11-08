@@ -9,6 +9,7 @@ namespace AddressBook_LINQ
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using System.Text;
 
     public class AddressBookDataTable
@@ -19,7 +20,7 @@ namespace AddressBook_LINQ
         public static DataTable addressBookTable = new DataTable();
 
         /// <summary>
-        /// UC 2 : Adds the data into table.
+        /// UC 2,3 : Adds the data into table.
         /// </summary>
         public static void AddDataIntoTable()
         {
@@ -45,6 +46,30 @@ namespace AddressBook_LINQ
             addressBookTable.Rows.Add("Saurabh", "Ganguly", "Eden Gardens", "Kolkata", "West Bengal", 987654, 3456787654, "sg@gmail.com");
             addressBookTable.Rows.Add("Virendra", "Sehwag", "Firoz Shah Kotla", "New Delhi", "New Delhi", 234566, 6543456789, "vs@gmail.com");
             addressBookTable.Rows.Add("AB", "DeVilliers", "Chinnaswamy", "Bengaluru", "Karnataka", 444556, 3456787654, "abd@gmail.com");
+        }
+
+        /// <summary>
+        /// Displays the table contents.
+        /// </summary>
+        public static void DisplayTableContents()
+        {
+            foreach (var v in addressBookTable.AsEnumerable())
+            {
+                Console.WriteLine($"FirstName:{v.Field<string>("FirstName")}\nLastName:{v.Field<string>("LastName")}\nAddress:{v.Field<string>("Address")}\nCity:{v.Field<string>("City")}\nState:{v.Field<string>("State")}\nZip:{v.Field<int>("Zip")}\nPhoneNumber:{v.Field<double>("PhoneNumber")}\nEmail:{v.Field<string>("Email")}\n");
+            }
+        }
+
+        /// <summary>
+        /// UC 4 : Edits the existing contact.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="zip">The zip.</param>
+        public static void EditExistingContact(string firstName,string lastName,int zip)
+        {                                 
+            (from p in addressBookTable.AsEnumerable()
+             where p.Field<string>("FirstName") == firstName && p.Field<string>("LastName") == lastName
+             select p).ToList().ForEach(x => x[5] = zip);            
         }
     }
 }
