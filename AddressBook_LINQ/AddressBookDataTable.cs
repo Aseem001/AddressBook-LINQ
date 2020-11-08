@@ -33,11 +33,18 @@ namespace AddressBook_LINQ
             addressBookTable.Columns.Add("PhoneNumber", typeof(double));
             addressBookTable.Columns.Add("Email", typeof(string));
 
-            //Adding First Name and Last name as primary key
+            //Adding First Name and Last name as composite primary key
             DataColumn[] primaryKeys = new DataColumn[2];
             primaryKeys[0] = addressBookTable.Columns["FirstName"];
             primaryKeys[1] = addressBookTable.Columns["LastName"];
             addressBookTable.PrimaryKey = primaryKeys;
+
+            //Creating rows and adding data into rows
+            addressBookTable.Rows.Add("Virat", "Kohli", "Chinnaswamy", "Bengaluru", "Karnataka", 444556, 6785674567, "vk@gmail.com");
+            addressBookTable.Rows.Add("Rohit", "Sharma", "Wankhede", "Mumbai", "Maharashtra", 345267, 2345678987, "rs@gmail.com");
+            addressBookTable.Rows.Add("Saurabh", "Ganguly", "Eden Gardens", "Kolkata", "West Bengal", 987654, 3456787654, "sg@gmail.com");
+            addressBookTable.Rows.Add("Virendra", "Sehwag", "Firoz Shah Kotla", "New Delhi", "New Delhi", 234566, 6543456789, "vs@gmail.com");
+            addressBookTable.Rows.Add("AB", "DeVilliers", "Chinnaswamy", "Bengaluru", "Karnataka", 444556, 3456787654, "abd@gmail.com");
         }
     }
 }
