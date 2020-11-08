@@ -115,8 +115,8 @@ namespace AddressBook_LINQ
             {
                 case 1:
                     var retrievedCityData = (from p in addressBookTable.AsEnumerable()
-                                         group p by p.Field<string>("City") into g
-                                         select new { City = g.Key, Count = g.Count() });
+                                             group p by p.Field<string>("City") into g
+                                             select new { City = g.Key, Count = g.Count() });
                     foreach (var v in retrievedCityData)
                     {
                         Console.WriteLine($"City:{v.City},Count:{v.Count}");
@@ -124,14 +124,30 @@ namespace AddressBook_LINQ
                     break;
                 case 2:
                     var retrievedStateData = (from p in addressBookTable.AsEnumerable()
-                                         group p by p.Field<string>("State") into g
-                                         select new { State = g.Key, Count = g.Count() });
+                                              group p by p.Field<string>("State") into g
+                                              select new { State = g.Key, Count = g.Count() });
                     foreach (var v in retrievedStateData)
                     {
                         Console.WriteLine($"State:{v.State},Count:{v.Count}");
                     }
                     break;
-            }            
+            }                        
+        }
+
+        /// <summary>
+        /// UC 8 : Retrieves the records sorted by name for a given city.
+        /// </summary>
+        /// <param name="city">The city.</param>
+        public static void RetrieveRecordsSortedByNameForAGivenCity(string city)
+        {
+            var retrievedData = from p in addressBookTable.AsEnumerable()
+                                where p.Field<string>("City") == city
+                                orderby p.Field<string>("FirstName"), p.Field<string>("LastName")
+                                select p;
+            foreach(var v in retrievedData)
+            {
+                Console.WriteLine($"FirstName:{v.Field<string>("FirstName")}\nLastName:{v.Field<string>("LastName")}\nAddress:{v.Field<string>("Address")}\nCity:{v.Field<string>("City")}\nState:{v.Field<string>("State")}\nZip:{v.Field<int>("Zip")}\nPhoneNumber:{v.Field<double>("PhoneNumber")}\nEmail:{v.Field<string>("Email")}\n");
+            }
         }
     }
 }
